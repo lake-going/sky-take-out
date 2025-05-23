@@ -2,4 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sky.mapper.EmployeeMapper">
+    <insert id="addEmployee" parameterType="com.sky.mapper.EmployeeMapper">
+        insert into employee
+        value
+            (null,#{name},#{username},#{password},#{phone},#{sex},#{idNumber},#{status},#{createTime},#{updateTime},#{createUser},#{updateUser})
+    </insert>
+
+    <select id="getByIdNumber" resultType="java.lang.Boolean">
+        select * from employee where employee.id_number = #{idNumber}
+    </select>
 </mapper>
