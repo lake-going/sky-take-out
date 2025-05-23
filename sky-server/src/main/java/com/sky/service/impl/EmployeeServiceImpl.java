@@ -1,24 +1,27 @@
 package com.sky.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.PasswordConstant;
 import com.sky.constant.StatusConstant;
 import com.sky.context.BaseContext;
 import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
+import com.sky.dto.EmployeePageQueryDTO;
 import com.sky.entity.Employee;
-import com.sky.exception.AccountLockedException;
-import com.sky.exception.AccountNotFoundException;
-import com.sky.exception.IdNumberAlreadyExistException;
-import com.sky.exception.PasswordErrorException;
+import com.sky.exception.*;
 import com.sky.mapper.EmployeeMapper;
 import com.sky.service.EmployeeService;
+import com.sky.vo.EmployeePageQueryVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -79,6 +82,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         // 插入数据
         employeeMapper.addEmployee(employee);
+    }
+
+    @Override
+    public EmployeePageQueryVO pageQueryEmployee(EmployeePageQueryDTO employeePageQueryDTO) {
+        // 使用page helper
+        PageHelper.startPage(employeePageQueryDTO.getPage(),employeePageQueryDTO.getPageSize());
+
+        // 调用mapper查询数据
+        List<Employee> employees = employeeMapper.pageQueryEmployee(employeePageQueryDTO);
+
+        // 将数据封装进EmployeePageQueryVO
+        Page p = (Page) employees;
+
+        return new EmployeePageQueryVO(p.getTotal(),employees);
     }
 
 }

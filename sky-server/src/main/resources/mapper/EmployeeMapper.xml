@@ -8,7 +8,13 @@
             (null,#{name},#{username},#{password},#{phone},#{sex},#{idNumber},#{status},#{createTime},#{updateTime},#{createUser},#{updateUser})
     </insert>
 
-    <select id="getByIdNumber" resultType="java.lang.Boolean">
-        select * from employee where employee.id_number = #{idNumber}
+    <select id="pageQueryEmployee" resultType="com.sky.entity.Employee">
+        select * from employee e
+        <where>
+            <if test="name != null and name!= ''">
+                e.name like concat('%', #{name}, '%')
+            </if>
+        </where>
+        order by e.create_time desc
     </select>
 </mapper>

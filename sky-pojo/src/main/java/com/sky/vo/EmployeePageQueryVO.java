@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Builder
@@ -18,8 +19,8 @@ import java.util.ArrayList;
 @ApiModel(description = "员工分页查询返回的数据格式")
 public class EmployeePageQueryVO implements Serializable {
     // 数据条数
-    private Integer total;
+    private Long total;
 
     // 所有的employee数据
-    private ArrayList<Employee> records;
+    private List<Employee> records;
 }
