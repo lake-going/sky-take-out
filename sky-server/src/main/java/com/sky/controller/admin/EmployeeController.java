@@ -71,6 +71,11 @@ public class EmployeeController {
         return Result.success();
     }
 
+    /**
+     * 新增employee
+     * @param employeeDTO
+     * @return
+     */
     @PostMapping
     public Result<String> addEmployee(@RequestBody EmployeeDTO employeeDTO){
         log.info("employeeDTO:{}",employeeDTO);
@@ -80,6 +85,11 @@ public class EmployeeController {
         return Result.success();
     }
 
+    /**
+     * 分页查询
+     * @param employeePageQueryDTO
+     * @return
+     */
     @GetMapping("/page")
     public Result<EmployeePageQueryVO> queryEmployee(EmployeePageQueryDTO employeePageQueryDTO) {
         log.info("employeePageQueryDTO: {}" ,employeePageQueryDTO);
@@ -89,12 +99,41 @@ public class EmployeeController {
         return Result.success(employeePageQueryVO);
     }
 
+    /**
+     * 修改用户status
+     * @param status
+     * @param id
+     * @return
+     */
     @PostMapping("/status/{status}")
     public Result changeStatus(@PathVariable Integer status,Long id) {
         log.info("修改id为{}的账户使用状态为{}",id,status);
 
         employeeService.changeStatus(status,id);
 
+
+        return Result.success();
+    }
+
+    /**
+     * 根据id查询用户信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public Result<Employee> queryById(@PathVariable Long id) {
+        log.info("查询id为{}的用户信息",id);
+
+        Employee employee = employeeService.queryById(id);
+
+        return Result.success(employee);
+    }
+
+    @PutMapping
+    public Result updateEmployee(@RequestBody EmployeeDTO employeeDTO){
+        log.info("employee:{}",employeeDTO);
+
+        employeeService.updateEmployee(employeeDTO);
 
         return Result.success();
     }

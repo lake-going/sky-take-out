@@ -10,6 +10,16 @@
     <update id="changeStatus">
         update employee e set e.status = #{status} where e.id = #{id}
     </update>
+    <update id="updateEmployee">
+        update employee e set e.id_number=#{idNumber},
+                              e.name=#{name},
+                              e.phone=#{phone},
+                              e.sex=#{sex},
+                              e.username=#{username},
+                              e.update_time=#{updateTime},
+                              e.update_user=#{updateUser}
+        where e.id = #{id}
+    </update>
 
     <select id="pageQueryEmployee" resultType="com.sky.entity.Employee">
         select * from employee e
@@ -19,5 +29,8 @@
             </if>
         </where>
         order by e.create_time desc
+    </select>
+    <select id="queryById" resultType="com.sky.entity.Employee">
+        select * from employee where id = #{id}
     </select>
 </mapper>
