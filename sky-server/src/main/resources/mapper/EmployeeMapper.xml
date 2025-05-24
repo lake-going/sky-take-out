@@ -7,6 +7,9 @@
         value
             (null,#{name},#{username},#{password},#{phone},#{sex},#{idNumber},#{status},#{createTime},#{updateTime},#{createUser},#{updateUser})
     </insert>
+    <update id="changeStatus">
+        update employee e set e.status = #{status} where e.id = #{id}
+    </update>
 
     <select id="pageQueryEmployee" resultType="com.sky.entity.Employee">
         select * from employee e

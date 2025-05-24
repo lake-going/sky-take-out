@@ -89,4 +89,14 @@ public class EmployeeController {
         return Result.success(employeePageQueryVO);
     }
 
+    @PostMapping("/status/{status}")
+    public Result changeStatus(@PathVariable Integer status,Long id) {
+        log.info("修改id为{}的账户使用状态为{}",id,status);
+
+        employeeService.changeStatus(status,id);
+
+
+        return Result.success();
+    }
+
 }

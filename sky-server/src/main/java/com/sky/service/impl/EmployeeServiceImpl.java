@@ -98,4 +98,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return new EmployeePageQueryVO(p.getTotal(),employees);
     }
 
+    @Override
+    public void changeStatus(Integer status, Long id) {
+        //1、使用mapper方法，修改账户状态
+        employeeMapper.changeStatus(status,id);
+    }
+
 }

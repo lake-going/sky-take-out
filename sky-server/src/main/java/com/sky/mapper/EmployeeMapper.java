@@ -23,4 +23,5 @@ public interface EmployeeMapper {
 
     List<Employee> pageQueryEmployee(EmployeePageQueryDTO employeePageQueryDTO);
 
+    void changeStatus(Integer status, Long id);
 }
