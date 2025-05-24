@@ -10,4 +10,6 @@ import java.util.List;
 @Mapper
 public interface CategoryMapper {
     List<Category> pageQueryCategory(CategoryPageQueryDTO categoryPageQueryDTO);
+
+    void addCategory(Category category);
 }

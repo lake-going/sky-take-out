@@ -1,5 +1,6 @@
 package com.sky.controller.admin;
 
+import com.sky.dto.CategoryDTO;
 import com.sky.dto.CategoryPageQueryDTO;
 import com.sky.dto.EmployeePageQueryDTO;
 import com.sky.entity.Category;
@@ -32,5 +33,14 @@ public class CategoryController {
 
         PageQueryVO pageQueryVO = categoryService.pageQueryCategory(categoryPageQueryDTO);
         return Result.success(pageQueryVO);
+    }
+
+    @PostMapping
+    public Result addCategory(@RequestBody CategoryDTO categoryDTO){
+        log.info("categoryDto: {}",categoryDTO);
+
+        categoryService.addCategory(categoryDTO);
+
+        return Result.success();
     }
 }
