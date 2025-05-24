@@ -10,7 +10,7 @@ import com.sky.result.Result;
 import com.sky.service.EmployeeService;
 import com.sky.utils.JwtUtil;
 import com.sky.vo.EmployeeLoginVO;
-import com.sky.vo.EmployeePageQueryVO;
+import com.sky.vo.PageQueryVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -91,10 +91,10 @@ public class EmployeeController {
      * @return
      */
     @GetMapping("/page")
-    public Result<EmployeePageQueryVO> queryEmployee(EmployeePageQueryDTO employeePageQueryDTO) {
+    public Result<PageQueryVO> queryEmployee(EmployeePageQueryDTO employeePageQueryDTO) {
         log.info("employeePageQueryDTO: {}" ,employeePageQueryDTO);
 
-        EmployeePageQueryVO employeePageQueryVO = employeeService.pageQueryEmployee(employeePageQueryDTO);
+        PageQueryVO employeePageQueryVO = employeeService.pageQueryEmployee(employeePageQueryDTO);
 
         return Result.success(employeePageQueryVO);
     }

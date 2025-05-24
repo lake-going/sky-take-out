@@ -13,14 +13,13 @@ import com.sky.entity.Employee;
 import com.sky.exception.*;
 import com.sky.mapper.EmployeeMapper;
 import com.sky.service.EmployeeService;
-import com.sky.vo.EmployeePageQueryVO;
+import com.sky.vo.PageQueryVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -85,7 +84,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeePageQueryVO pageQueryEmployee(EmployeePageQueryDTO employeePageQueryDTO) {
+    public PageQueryVO pageQueryEmployee(EmployeePageQueryDTO employeePageQueryDTO) {
         // 使用page helper
         PageHelper.startPage(employeePageQueryDTO.getPage(),employeePageQueryDTO.getPageSize());
 
@@ -95,7 +94,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         // 将数据封装进EmployeePageQueryVO
         Page p = (Page) employees;
 
-        return new EmployeePageQueryVO(p.getTotal(),employees);
+        return new PageQueryVO(p.getTotal(),employees);
     }
 
     @Override

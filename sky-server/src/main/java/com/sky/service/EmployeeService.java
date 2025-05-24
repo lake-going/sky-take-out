@@ -4,7 +4,7 @@ import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
 import com.sky.dto.EmployeePageQueryDTO;
 import com.sky.entity.Employee;
-import com.sky.vo.EmployeePageQueryVO;
+import com.sky.vo.PageQueryVO;
 
 public interface EmployeeService {
 
@@ -17,7 +17,7 @@ public interface EmployeeService {
 
     void addEmployee(EmployeeDTO employeeDTO);
 
-    EmployeePageQueryVO pageQueryEmployee(EmployeePageQueryDTO employeePageQueryDTO);
+    PageQueryVO pageQueryEmployee(EmployeePageQueryDTO employeePageQueryDTO);
 
     void changeStatus(Integer status, Long id);
 
