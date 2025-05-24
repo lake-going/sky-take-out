@@ -12,4 +12,7 @@ public interface CategoryService {
 
     void addCategory(CategoryDTO categoryDTO);
 
+    void deleteCategory(Integer id);
+
+    void updateCategory(CategoryDTO categoryDTO);
 }

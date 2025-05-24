@@ -43,4 +43,22 @@ public class CategoryController {
 
         return Result.success();
     }
+
+    @DeleteMapping
+    public Result deleteCategory(Integer id){
+        log.info("id:{}",id);
+
+        categoryService.deleteCategory(id);
+
+        return Result.success();
+    }
+
+    @PutMapping
+    public Result updateCategory(@RequestBody CategoryDTO categoryDTO){
+        log.info("categoryDTO:{}",categoryDTO);
+
+        categoryService.updateCategory(categoryDTO);
+
+        return Result.success();
+    }
 }

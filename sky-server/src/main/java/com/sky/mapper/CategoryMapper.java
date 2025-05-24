@@ -12,4 +12,8 @@ public interface CategoryMapper {
     List<Category> pageQueryCategory(CategoryPageQueryDTO categoryPageQueryDTO);
 
     void addCategory(Category category);
+
+    void deleteCategory(Integer id);
+
+    void updateCategory(Category category);
 }
