@@ -24,8 +24,6 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
-    @Autowired
-    private JwtProperties jwtProperties;
 
     @GetMapping("/page")
     public Result<PageQueryVO> pageQueryCategory(CategoryPageQueryDTO categoryPageQueryDTO) {
@@ -58,6 +56,15 @@ public class CategoryController {
         log.info("categoryDTO:{}",categoryDTO);
 
         categoryService.updateCategory(categoryDTO);
+
+        return Result.success();
+    }
+
+    @PostMapping("/status/{status}")
+    public Result updateStatus(@PathVariable Integer status,Integer id){
+        log.info("status:{}",status);
+
+        categoryService.updateStatus(status,id);
 
         return Result.success();
     }

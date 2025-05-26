@@ -12,17 +12,27 @@
                                 #{createUser},
                                 #{updateUser})
     </insert>
+
     <update id="updateCategory">
-        update category c set c.update_user=#{},
-                              c.name=#{},
-                              c.sort=#{},
-                              c.type=#{},
-                              c.update_time=#{}
+        update category c set c.update_user=#{updateUser},
+                              c.name=#{name},
+                              c.sort=#{sort},
+                              c.type=#{type},
+                              c.update_time=#{updateTime}
         where c.id = #{id}
     </update>
+
+    <update id="updateStatus">
+        update category c set
+            c.status = #{status}
+        where
+            c.id = #{id}
+    </update>
+
     <delete id="deleteCategory">
         delete from category c where c.id = #{id}
     </delete>
+
     <select id="pageQueryCategory" resultType="com.sky.entity.Category">
         select * from category c
         <where>

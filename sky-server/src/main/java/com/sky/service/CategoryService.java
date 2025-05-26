@@ -15,4 +15,6 @@ public interface CategoryService {
     void deleteCategory(Integer id);
 
     void updateCategory(CategoryDTO categoryDTO);
+
+    void updateStatus(Integer status,Integer id);
 }
