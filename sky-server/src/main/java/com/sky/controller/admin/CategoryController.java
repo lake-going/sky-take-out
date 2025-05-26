@@ -68,4 +68,13 @@ public class CategoryController {
 
         return Result.success();
     }
+
+    @GetMapping("/list")
+    public Result<List<Category>> queryByType(Integer type){
+        log.info("type: {}",type);
+
+        List<Category> categoryList = categoryService.queryByType(type);
+
+        return Result.success(categoryList);
+    }
 }

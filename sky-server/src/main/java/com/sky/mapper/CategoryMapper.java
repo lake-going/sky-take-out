@@ -23,4 +23,6 @@ public interface CategoryMapper {
 
     @AutoFile(OperationType.UPDATE)
     void updateStatus(Integer status,Integer id);
+
+    List<Category> queryByType(Integer type);
 }

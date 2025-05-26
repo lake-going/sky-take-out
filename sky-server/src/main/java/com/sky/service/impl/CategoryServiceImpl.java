@@ -78,4 +78,10 @@ public class CategoryServiceImpl implements CategoryService {
     public void updateStatus(Integer status,Integer id) {
         categoryMapper.updateStatus(status,id);
     }
+
+    @Override
+    public List<Category> queryByType(Integer type) {
+        List<Category> categoryList = categoryMapper.queryByType(type);
+        return categoryList;
+    }
 }
