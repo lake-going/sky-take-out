@@ -55,10 +55,13 @@ public class SetmealServiceImpl implements SetmealService {
 
         // 2、整理数据，插入setmeal_dish表
         List<SetmealDish> setmealDishList = setmealDTO.getSetmealDishes();
-        setmealDishList.forEach(setmealDish -> {
-            setmealDish.setSetmealId(setmeal.getId());
-        });
-        setmealDishMapper.insertSetmeal(setmealDishList);
+        if (!setmealDishList.isEmpty()){
+            setmealDishList.forEach(setmealDish -> {
+                setmealDish.setSetmealId(setmeal.getId());
+            });
+            setmealDishMapper.insertSetmeal(setmealDishList);
+        }
+
     }
 
     @Transactional
@@ -86,7 +89,10 @@ public class SetmealServiceImpl implements SetmealService {
 
     @Override
     public void updateStatus(Integer status, Long id) {
-        setmealMapper.updateStatus(status,id);
+        Setmeal setmeal = new Setmeal();
+        setmeal.setStatus(status);
+        setmeal.setId(id);
+        setmealMapper.updateStatus(setmeal);
     }
 
     @Override

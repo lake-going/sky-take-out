@@ -19,7 +19,7 @@ public interface CategoryService {
 
     void updateCategory(CategoryDTO categoryDTO);
 
-    void updateStatus(Integer status,Integer id);
+    void updateStatus(Integer status,Long id);
 
     List<Category> queryByType(Integer type);
 

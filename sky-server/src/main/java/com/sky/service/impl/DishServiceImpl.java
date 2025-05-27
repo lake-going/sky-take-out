@@ -67,10 +67,13 @@ public class DishServiceImpl implements DishService {
 
         // 3、插入id字段
         List<DishFlavor> dishFlavorList = dishDTO.getFlavors();
+        if (!dishFlavorList.isEmpty()){
+            // 4、调用mapper
+            dishFlavorList.forEach(dishFlavor -> dishFlavor.setDishId(dish.getId()));
+            dishFlavorMapper.addDishFlavor(dishFlavorList);
+        }
 
-        // 4、调用mapper
-        dishFlavorList.forEach(dishFlavor -> dishFlavor.setDishId(dish.getId()));
-        dishFlavorMapper.addDishFlavor(dishFlavorList);
+
     }
 
     @Transactional
@@ -140,8 +143,11 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public void updateStatus(Integer status, Long id) {
+        Dish dish = new Dish();
+        dish.setStatus(status);
+        dish.setId(id);
         // 1、调用mapper
-        dishMapper.updateStatus(status,id);
+        dishMapper.updateStatus(dish);
     }
 
     @Override

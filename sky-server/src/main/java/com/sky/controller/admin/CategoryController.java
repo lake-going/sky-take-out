@@ -61,7 +61,7 @@ public class CategoryController {
     }
 
     @PostMapping("/status/{status}")
-    public Result updateStatus(@PathVariable Integer status,Integer id){
+    public Result updateStatus(@PathVariable Integer status,Long id){
         log.info("status:{}",status);
 
         categoryService.updateStatus(status,id);

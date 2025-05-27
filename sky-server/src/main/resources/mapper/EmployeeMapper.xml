@@ -7,15 +7,22 @@
         value
             (null,#{name},#{username},#{password},#{phone},#{sex},#{idNumber},#{status},#{createTime},#{updateTime},#{createUser},#{updateUser})
     </insert>
-    <update id="changeStatus">
-        update employee e set e.status = #{status} where e.id = #{id}
-    </update>
+
     <update id="updateEmployee">
         update employee e set e.id_number=#{idNumber},
                               e.name=#{name},
                               e.phone=#{phone},
                               e.sex=#{sex},
                               e.username=#{username},
+                              e.update_time=#{updateTime},
+                              e.update_user=#{updateUser}
+        where e.id = #{id}
+    </update>
+
+
+    <update id="changeStatus">
+        update employee e set
+                              e.status=#{status},
                               e.update_time=#{updateTime},
                               e.update_user=#{updateUser}
         where e.id = #{id}

@@ -16,7 +16,7 @@
                              setmeal.update_user)
         values (
                                     null,
-                                    #{category_id},
+                                    #{categoryId},
                                     #{name},
                                     #{price},
                                     #{status},
@@ -28,10 +28,14 @@
                                     #{updateUser}
                                 )
     </insert>
-
     <update id="updateStatus">
-        update setmeal set setmeal.status = #{status} where setmeal.id = #{id}
+        update setmeal set
+                           setmeal.status = #{status},
+                           setmeal.update_user = #{updateUser},
+                           setmeal.update_time = #{updateTime}
+                       where setmeal.id = #{id}
     </update>
+
 
     <delete id="deleteById">
         delete from setmeal where setmeal.id = #{id}

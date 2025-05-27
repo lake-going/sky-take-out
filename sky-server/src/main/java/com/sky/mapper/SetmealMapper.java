@@ -22,5 +22,5 @@ public interface SetmealMapper {
     void deleteById(Long id);
 
     @AutoFile(OperationType.UPDATE)
-    void updateStatus(Integer status, Long id);
+    void updateStatus(Setmeal setmeal);
 }

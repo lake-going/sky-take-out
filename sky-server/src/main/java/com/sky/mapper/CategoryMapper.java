@@ -22,7 +22,7 @@ public interface CategoryMapper {
     void updateCategory(Category category);
 
     @AutoFile(OperationType.UPDATE)
-    void updateStatus(Integer status,Integer id);
+    void updateStatus(Category category);
 
     List<Category> queryByType(Integer type);
 }

@@ -12,7 +12,6 @@ import java.util.List;
 public interface SetmealDishMapper {
     List<SetmealDish> queryByDishId(Long id);
 
-    @AutoFile(OperationType.INSERT)
     void insertSetmeal(List<SetmealDish> setmealDishList);
 
     void deleteBySetmealId(Long id);

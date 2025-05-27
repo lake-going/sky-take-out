@@ -75,8 +75,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void updateStatus(Integer status,Integer id) {
-        categoryMapper.updateStatus(status,id);
+    public void updateStatus(Integer status,Long id) {
+        Category category = new Category();
+        category.setId(id);
+        category.setStatus(status);
+        categoryMapper.updateStatus(category);
     }
 
     @Override

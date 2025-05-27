@@ -67,7 +67,7 @@ public class AutoFileAspect {
         }else {
             // 4、update操作
             try {
-                Method updateCreateTime = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_TIME, LocalTime.class);
+                Method updateCreateTime = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_TIME, LocalDateTime.class);
                 Method updateUser = entity.getClass().getDeclaredMethod(AutoFillConstant.SET_UPDATE_USER, Long.class);
                 updateCreateTime.invoke(entity,LocalDateTime.now());
                 updateUser.invoke(entity, BaseContext.getCurrentId());

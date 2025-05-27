@@ -27,7 +27,7 @@ public interface EmployeeMapper {
     List<Employee> pageQueryEmployee(EmployeePageQueryDTO employeePageQueryDTO);
 
     @AutoFile(OperationType.UPDATE)
-    void changeStatus(Integer status, Long id);
+    void changeStatus(Employee employee);
 
     Employee queryById(Long id);
 

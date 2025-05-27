@@ -21,13 +21,15 @@
                               c.update_time=#{updateTime}
         where c.id = #{id}
     </update>
-
     <update id="updateStatus">
         update category c set
-            c.status = #{status}
+            c.status = #{status},
+            c.update_user=#{updateUser},
+            c.update_time=#{updateTime}
         where
             c.id = #{id}
     </update>
+
 
     <delete id="deleteCategory">
         delete from category c where c.id = #{id}

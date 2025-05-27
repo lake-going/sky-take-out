@@ -21,7 +21,6 @@ public interface DishMapper {
 
     Dish queryById(Long id);
 
-    @AutoFile(OperationType.UPDATE)
     void deleteById(Long id);
 
     DishVO selectById(Long id);
@@ -30,7 +29,7 @@ public interface DishMapper {
     void updateDish(Dish dish);
 
     @AutoFile(OperationType.UPDATE)
-    void updateStatus(Integer status, Long id);
+    void updateStatus(Dish dish);
 
     List<Dish> selectByCategory(Integer categoryId);
 }

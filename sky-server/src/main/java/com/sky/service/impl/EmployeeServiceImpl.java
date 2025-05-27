@@ -99,8 +99,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void changeStatus(Integer status, Long id) {
+        Employee employee = new Employee();
+        employee.setStatus(status);
+        employee.setId(id);
         //1、使用mapper方法，修改账户状态
-        employeeMapper.changeStatus(status,id);
+        employeeMapper.changeStatus(employee);
     }
 
     @Override
