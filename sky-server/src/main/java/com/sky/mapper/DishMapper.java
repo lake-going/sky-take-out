@@ -8,6 +8,7 @@ import com.sky.entity.DishFlavor;
 import com.sky.enumeration.OperationType;
 import com.sky.vo.DishVO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 
 import java.util.List;
 
@@ -15,7 +16,8 @@ import java.util.List;
 public interface DishMapper {
     Page<DishVO> pageDish(DishPageQueryDTO dishPageQueryDTO);
 
+//    @AutoFile(OperationType.INSERT)
+//    @Options(useGeneratedKeys = true,keyProperty = "id")  // 获取主键id
     void addDish(Dish dish);
 
-    void addDishFlavor(List<DishFlavor> dishFlavorList);
 }

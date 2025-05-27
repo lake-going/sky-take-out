@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @param
  * @return
@@ -34,6 +36,12 @@ public class DishController {
         log.info("dishDto: {}",dishDTO);
 
         dishService.addDish(dishDTO);
+
+        return Result.success();
+    }
+
+    @DeleteMapping
+    public Result deleteDish(@PathVariable List<Long> ids){
 
         return Result.success();
     }

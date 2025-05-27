@@ -6,6 +6,7 @@ import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
 import com.sky.entity.DishFlavor;
+import com.sky.mapper.DishFlavorMapper;
 import com.sky.mapper.DishMapper;
 import com.sky.service.DishService;
 import com.sky.vo.DishVO;
@@ -28,6 +29,8 @@ import java.util.List;
 public class DishServiceImpl implements DishService {
     @Autowired
     private DishMapper dishMapper;
+    @Autowired
+    private DishFlavorMapper dishFlavorMapper;
 
     @Override
     public PageQueryVO pageDish(DishPageQueryDTO dishPageQueryDTO) {
@@ -51,12 +54,13 @@ public class DishServiceImpl implements DishService {
 
         // 2、调用mapper
         dishMapper.addDish(dish);
+        log.info("dish_id = {}",dish.getId());
 
         // 3、插入id字段
         List<DishFlavor> dishFlavorList = dishDTO.getFlavors();
 
         // 4、调用mapper
         dishFlavorList.forEach(dishFlavor -> dishFlavor.setDishId(dish.getId()));
-        dishMapper.addDishFlavor(dishFlavorList);
+        dishFlavorMapper.addDishFlavor(dishFlavorList);
     }
 }

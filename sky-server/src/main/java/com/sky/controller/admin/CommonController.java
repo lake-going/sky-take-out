@@ -36,11 +36,11 @@ public class CommonController {
             String objectName = UUID.randomUUID().toString()+suffix;
             // 3、调用utils上传
             String url = aliOssUtil.upload(file.getBytes(),objectName);
+            log.info("文件上传成功");
+            return Result.success(url);
         } catch (IOException e) {
             log.error("文件上传失败：{}",e.getMessage());
             return Result.error("文件上传失败");
         }
-
-        return Result.success("文件上传成功");
     }
 }
