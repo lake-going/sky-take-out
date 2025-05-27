@@ -10,4 +10,10 @@ import java.util.List;
 @Mapper
 public interface SetmealMapper {
     Page<Setmeal> pageSetmeal(SetmealPageQueryDTO setmealPageQueryDTO);
+
+    void insertSetmeal(Setmeal setmeal);
+
+    Setmeal selectById(Long id);
+
+    void deleteById(Long id);
 }

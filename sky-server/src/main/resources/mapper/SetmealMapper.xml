@@ -2,6 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sky.mapper.SetmealMapper">
+    <insert id="insertSetmeal" useGeneratedKeys = "true" keyProperty = "id">
+        insert into setmeal (setmeal.id,
+                             setmeal.category_id,
+                             setmeal.name,
+                             setmeal.price,
+                             setmeal.status,
+                             setmeal.description,
+                             setmeal.image,
+                             setmeal.create_time,
+                             setmeal.update_time,
+                             setmeal.create_user,
+                             setmeal.update_user)
+        values (
+                                    null,
+                                    #{category_id},
+                                    #{name},
+                                    #{price},
+                                    #{status},
+                                    #{description},
+                                    #{image},
+                                    #{createTime},
+                                    #{updateTime},
+                                    #{createUser},
+                                    #{updateUser}
+                                )
+    </insert>
+    <delete id="deleteById">
+        delete from setmeal where setmeal.id = #{id}
+    </delete>
 
     <select id="pageSetmeal" resultType="com.sky.entity.Setmeal">
         select * from setmeal s
@@ -17,5 +46,8 @@
             </if>
         </where>
         order by s.create_time desc
+    </select>
+    <select id="selectById" resultType="com.sky.entity.Setmeal">
+        select * from setmeal where setmeal.id = #{id}
     </select>
 </mapper>

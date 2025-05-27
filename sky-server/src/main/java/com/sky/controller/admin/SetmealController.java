@@ -1,14 +1,15 @@
 package com.sky.controller.admin;
 
+import com.sky.dto.SetmealDTO;
 import com.sky.dto.SetmealPageQueryDTO;
 import com.sky.result.Result;
 import com.sky.service.SetmealService;
 import com.sky.vo.PageQueryVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @param
@@ -29,5 +30,23 @@ public class SetmealController {
         PageQueryVO pageQueryVO = setmealService.pageSetmeal(setmealPageQueryDTO);
 
         return Result.success(pageQueryVO);
+    }
+
+    @PostMapping
+    public Result insertSetmeal(@RequestBody SetmealDTO setmealDTO){
+        log.info("");
+
+        setmealService.insertSetmeal(setmealDTO);
+
+        return Result.success();
+    }
+
+    @DeleteMapping
+    public Result deleteSetmeal(@RequestParam List<Long> ids){
+        log.info("ids:{}",ids);
+
+        setmealService.deleteSetmeal(ids);
+
+        return Result.success();
     }
 }
