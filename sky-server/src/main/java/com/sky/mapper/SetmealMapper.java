@@ -16,4 +16,6 @@ public interface SetmealMapper {
     Setmeal selectById(Long id);
 
     void deleteById(Long id);
+
+    void updateStatus(Integer status, Long id);
 }

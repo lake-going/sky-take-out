@@ -15,4 +15,6 @@ public interface SetmealService {
     void insertSetmeal(SetmealDTO setmealDTO);
 
     void deleteSetmeal(List<Long> ids);
+
+    void updateStatus(Integer status, Long id);
 }
