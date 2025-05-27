@@ -13,6 +13,7 @@ import com.sky.mapper.SetmealDishMapper;
 import com.sky.mapper.SetmealMapper;
 import com.sky.service.SetmealService;
 import com.sky.vo.PageQueryVO;
+import com.sky.vo.SetmealVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -86,6 +87,28 @@ public class SetmealServiceImpl implements SetmealService {
     @Override
     public void updateStatus(Integer status, Long id) {
         setmealMapper.updateStatus(status,id);
+    }
+
+    @Override
+    public SetmealVO selectById(Long id) {
+        // 1、查setmeal
+        Setmeal setmeal = setmealMapper.selectById(id);
+
+        // 2、查setmealdish
+        List<SetmealDish> setmealDishList = setmealDishMapper.queryByDishId(id);
+
+
+        // 3、组装
+        SetmealVO setmealVO = new SetmealVO();
+        BeanUtils.copyProperties(setmeal,setmealVO);
+        setmealVO.setSetmealDishes(setmealDishList);
+
+        return setmealVO;
+    }
+
+    @Override
+    public void updateSetmeal(SetmealDTO setmealDTO) {
+
     }
 
 }

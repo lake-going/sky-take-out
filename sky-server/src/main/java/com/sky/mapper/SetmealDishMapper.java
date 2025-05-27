@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface SetmealDishMapper {
-    Setmeal quearByDishId(Long id);
+    List<SetmealDish> queryByDishId(Long id);
 
     void insertSetmeal(List<SetmealDish> setmealDishList);
 

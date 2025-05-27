@@ -25,7 +25,7 @@
         delete from setmeal_dish sd where sd.setmeal_id = #{id}
     </delete>
 
-    <select id="quearByDishId" resultType="com.sky.entity.Setmeal">
+    <select id="queryByDishId" resultType="com.sky.entity.SetmealDish">
         select * from setmeal_dish where dish_id = #{id}
     </select>
 </mapper>

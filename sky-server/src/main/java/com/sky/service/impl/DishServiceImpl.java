@@ -86,8 +86,8 @@ public class DishServiceImpl implements DishService {
 
         // 2、被套餐关联的菜品不能删
         ids.forEach(id->{
-            Setmeal setmeal = setmealDishMapper.quearByDishId(id);
-            if (setmeal != null){
+            List<SetmealDish> setmealDishList = setmealDishMapper.queryByDishId(id);
+            if (!setmealDishList.isEmpty()){
                 throw new DeletionNotAllowedException(MessageConstant.CATEGORY_BE_RELATED_BY_DISH);
             }
         });
