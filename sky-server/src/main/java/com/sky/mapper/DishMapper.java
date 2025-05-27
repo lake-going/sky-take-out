@@ -28,4 +28,6 @@ public interface DishMapper {
 
 //    @AutoFile(OperationType.UPDATE)
     void updateDish(Dish dish);
+
+    void updateStatus(Integer status, Long id);
 }

@@ -30,6 +30,11 @@
         WHERE
             d.id = #{id}
     </update>
+    <update id="updateStatus">
+        update dish d set
+                          d.status = #{status}
+        where d.id = #{id}
+    </update>
     <delete id="deleteById">
         delete from dish where dish.id = #{id}
     </delete>

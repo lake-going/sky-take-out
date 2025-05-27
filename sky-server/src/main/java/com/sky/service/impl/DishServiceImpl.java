@@ -137,4 +137,10 @@ public class DishServiceImpl implements DishService {
             dishFlavorMapper.addDishFlavor(dishFlavorList);
         }
     }
+
+    @Override
+    public void updateStatus(Integer status, Long id) {
+        // 1、调用mapper
+        dishMapper.updateStatus(status,id);
+    }
 }
