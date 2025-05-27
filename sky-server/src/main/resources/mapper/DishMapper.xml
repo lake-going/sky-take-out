@@ -29,7 +29,7 @@
 
 
     <select id="pageDish" resultType="com.sky.vo.DishVO">
-        select c.*, d.name categoryName from dish d,category c
+        select d.*, c.name categoryName from dish d,category c
         where d.category_id = c.id
         <if test="name != null">
             d.name like concat('%', #{name}, '%')
