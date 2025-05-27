@@ -20,4 +20,9 @@ public interface DishMapper {
 //    @Options(useGeneratedKeys = true,keyProperty = "id")  // 获取主键id
     void addDish(Dish dish);
 
+    Dish queryById(Long id);
+
+    void deleteById(Long id);
+
+    DishVO selectById(Long id);
 }

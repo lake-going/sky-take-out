@@ -16,6 +16,9 @@
                                  #{updateUser}
                                 )
     </insert>
+    <delete id="deleteById">
+        delete from dish where dish.id = #{id}
+    </delete>
 
 
     <select id="pageDish" resultType="com.sky.vo.DishVO">
@@ -32,4 +35,11 @@
         </if>
         order by d.create_time desc
     </select>
+    <select id="queryById" resultType="com.sky.entity.Dish">
+        select * from dish where dish.id = #{id}
+    </select>
+    <select id="selectById" resultType="com.sky.vo.DishVO">
+        select * from dish where dish.id = #{id}
+    </select>
+
 </mapper>

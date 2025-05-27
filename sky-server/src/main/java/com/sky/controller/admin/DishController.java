@@ -2,8 +2,10 @@ package com.sky.controller.admin;
 
 import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
+import com.sky.entity.Dish;
 import com.sky.result.Result;
 import com.sky.service.DishService;
+import com.sky.vo.DishVO;
 import com.sky.vo.PageQueryVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +43,26 @@ public class DishController {
     }
 
     @DeleteMapping
-    public Result deleteDish(@PathVariable List<Long> ids){
+    public Result deleteDish(@RequestParam List<Long> ids){
+        log.info("ids: {}",ids);
+        dishService.deleteDish(ids);
+
+        return Result.success();
+    }
+
+    @GetMapping("/{id}")
+    public Result<DishVO> selectById(@PathVariable Long id){
+        log.info("id:{}",id);
+        DishVO dishVO = dishService.selectById(id);
+
+        return Result.success(dishVO);
+    }
+
+    @PutMapping
+    public Result updateDish(@RequestBody DishDTO dishDTO){
+        log.info("dishDTO:{}",dishDTO);
+
+        dishService.updateDish(dishDTO);
 
         return Result.success();
     }
