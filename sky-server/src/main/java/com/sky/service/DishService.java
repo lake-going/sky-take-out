@@ -21,4 +21,6 @@ public interface DishService {
 
     void updateStatus(Integer status, Long id);
 
+    List<Dish> selectByCategory(Integer categoryId);
+
 }

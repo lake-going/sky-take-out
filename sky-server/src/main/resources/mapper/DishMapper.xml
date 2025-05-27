@@ -35,23 +35,25 @@
                           d.status = #{status}
         where d.id = #{id}
     </update>
+
     <delete id="deleteById">
         delete from dish where dish.id = #{id}
     </delete>
 
 
     <select id="pageDish" resultType="com.sky.vo.DishVO">
-        select d.*, c.name categoryName from dish d,category c
-        where d.category_id = c.id
+        select d.*, c.name categoryName from dish d inner join category c on d.category_id = c.id
+        <where>
         <if test="name != null">
-            d.name like concat('%', #{name}, '%')
+            and d.name like concat('%', #{name}, '%')
         </if>
         <if test="status != null">
-            d.status = #{status}
+            and d.status = #{status}
         </if>
         <if test="categoryId != null">
-            d.category_id = #{categoryId}
+            and d.category_id = #{categoryId}
         </if>
+        </where>
         order by d.create_time desc
     </select>
     <select id="queryById" resultType="com.sky.entity.Dish">
@@ -60,5 +62,9 @@
     <select id="selectById" resultType="com.sky.vo.DishVO">
         select * from dish where dish.id = #{id}
     </select>
+    <select id="selectByCategory" resultType="com.sky.entity.Dish">
+        select * from dish where dish.category_id = #{id}
+    </select>
+
 
 </mapper>

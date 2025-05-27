@@ -75,4 +75,13 @@ public class DishController {
 
         return Result.success();
     }
+
+    @GetMapping("/list")
+    public Result<List<Dish>> selectByCategory(Integer categoryId){
+        log.info("categoryId: {}",categoryId);
+
+        List<Dish> dishVOList = dishService.selectByCategory(categoryId);
+
+        return Result.success(dishVOList);
+    }
 }

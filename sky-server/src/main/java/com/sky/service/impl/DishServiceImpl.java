@@ -143,4 +143,10 @@ public class DishServiceImpl implements DishService {
         // 1、调用mapper
         dishMapper.updateStatus(status,id);
     }
+
+    @Override
+    public List<Dish> selectByCategory(Integer categoryId) {
+        List<Dish> dishVOList = dishMapper.selectByCategory(categoryId);
+        return dishVOList;
+    }
 }
