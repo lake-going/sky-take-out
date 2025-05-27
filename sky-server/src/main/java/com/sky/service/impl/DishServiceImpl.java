@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sky.constant.MessageConstant;
 import com.sky.constant.StatusConstant;
+import com.sky.context.BaseContext;
 import com.sky.dto.DishDTO;
 import com.sky.dto.DishPageQueryDTO;
 import com.sky.entity.Dish;
@@ -114,12 +115,26 @@ public class DishServiceImpl implements DishService {
         return dishVO;
     }
 
+    @Transactional
     @Override
     public void updateDish(DishDTO dishDTO) {
         // 1、复制数据
+        Dish dish = new Dish();
+        BeanUtils.copyProperties(dishDTO,dish);
 
-        // 2、删除dish
+        // 2、update dish
+        dishMapper.updateDish(dish);
 
-        // 3、删除flavor
+        // 3、删除flavor,之后再加，flavor可能增加也可能减少，所以先删后增
+        List<DishFlavor> dishFlavorList = dishDTO.getFlavors();
+
+        if (!dishFlavorList.isEmpty()){
+            dishFlavorList.forEach(dishFlavor -> {
+                dishFlavor.setDishId(dish.getId());
+            });
+            dishFlavorMapper.deleteByDishId(dishDTO.getId());
+
+            dishFlavorMapper.addDishFlavor(dishFlavorList);
+        }
     }
 }

@@ -11,6 +11,7 @@
             #{flavor.value})
         </foreach>
     </insert>
+
     <delete id="deleteByDishId">
         delete from dish_flavor df where df.dish_id = #{id}
     </delete>

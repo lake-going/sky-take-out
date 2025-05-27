@@ -25,4 +25,7 @@ public interface DishMapper {
     void deleteById(Long id);
 
     DishVO selectById(Long id);
+
+//    @AutoFile(OperationType.UPDATE)
+    void updateDish(Dish dish);
 }

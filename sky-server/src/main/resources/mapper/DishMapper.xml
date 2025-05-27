@@ -16,6 +16,20 @@
                                  #{updateUser}
                                 )
     </insert>
+    <update id="updateDish">
+        UPDATE dish d
+        SET
+            d.name = #{name},
+            d.price = #{price},
+            d.category_id = #{categoryId},
+            d.status = #{status},
+            d.description = #{description},
+            d.image = #{image},
+            d.update_time = #{updateTime},
+            d.update_user = #{updateUser}
+        WHERE
+            d.id = #{id}
+    </update>
     <delete id="deleteById">
         delete from dish where dish.id = #{id}
     </delete>
