@@ -9,6 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface DishFlavorMapper {
+    @AutoFile(OperationType.INSERT)
     void addDishFlavor(List<DishFlavor> dishFlavorList);
 
     void deleteByDishId(Long id);

@@ -16,19 +16,20 @@ import java.util.List;
 public interface DishMapper {
     Page<DishVO> pageDish(DishPageQueryDTO dishPageQueryDTO);
 
-//    @AutoFile(OperationType.INSERT)
-//    @Options(useGeneratedKeys = true,keyProperty = "id")  // 获取主键id
+    @AutoFile(OperationType.INSERT)
     void addDish(Dish dish);
 
     Dish queryById(Long id);
 
+    @AutoFile(OperationType.UPDATE)
     void deleteById(Long id);
 
     DishVO selectById(Long id);
 
-//    @AutoFile(OperationType.UPDATE)
+    @AutoFile(OperationType.UPDATE)
     void updateDish(Dish dish);
 
+    @AutoFile(OperationType.UPDATE)
     void updateStatus(Integer status, Long id);
 
     List<Dish> selectByCategory(Integer categoryId);
