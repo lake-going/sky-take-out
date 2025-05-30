@@ -48,6 +48,12 @@
         order by c.create_time desc
     </select>
     <select id="queryByType" resultType="com.sky.entity.Category">
-        select * from category c where c.type = #{type}
+        select * from category c
+                 <where>
+                     <if test="type != null">
+                         c.type = #{type}
+                     </if>
+                 </where>
+
     </select>
 </mapper>

@@ -87,4 +87,5 @@ public class CategoryServiceImpl implements CategoryService {
         List<Category> categoryList = categoryMapper.queryByType(type);
         return categoryList;
     }
+
 }

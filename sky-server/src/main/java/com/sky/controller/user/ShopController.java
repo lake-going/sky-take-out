@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @Slf4j
-@RestController
+@RestController("userShopController")
 @RequestMapping("/user/shop")
 public class ShopController {
     @Autowired

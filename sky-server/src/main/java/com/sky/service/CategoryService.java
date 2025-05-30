@@ -22,5 +22,4 @@ public interface CategoryService {
     void updateStatus(Integer status,Long id);
 
     List<Category> queryByType(Integer type);
-
 }

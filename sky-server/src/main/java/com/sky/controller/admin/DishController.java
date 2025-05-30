@@ -9,9 +9,11 @@ import com.sky.vo.DishVO;
 import com.sky.vo.PageQueryVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @param
@@ -24,6 +26,8 @@ import java.util.List;
 public class DishController {
     @Autowired
     private DishService dishService;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @GetMapping("/page")
     public Result<PageQueryVO> pageDish(DishPageQueryDTO dishPageQueryDTO){
@@ -38,6 +42,7 @@ public class DishController {
         log.info("dishDto: {}",dishDTO);
 
         dishService.addDish(dishDTO);
+
 
         return Result.success();
     }
