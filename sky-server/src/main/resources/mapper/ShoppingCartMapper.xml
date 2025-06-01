@@ -78,5 +78,8 @@
     <select id="selectShoppingCart" resultType="com.sky.entity.ShoppingCart">
         select * from shopping_cart where user_id = #{userId}
     </select>
+    <select id="queryByUserId" resultType="com.sky.entity.ShoppingCart">
+        select * from shopping_cart where user_id = #{currentId}
+    </select>
 
 </mapper>

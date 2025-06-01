@@ -10,4 +10,7 @@
     <select id="queryByOpenId" resultType="com.sky.entity.User">
         select * from user where openid = #{openId}
     </select>
+    <select id="queryById" resultType="com.sky.entity.User">
+        select * from user where user.id = #{currentId}
+    </select>
 </mapper>

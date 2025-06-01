@@ -8,4 +8,6 @@ public interface UserLoginMapper {
     User queryByOpenId(String openId);
 
     void createUser(User user);
+
+    User queryById(Long currentId);
 }

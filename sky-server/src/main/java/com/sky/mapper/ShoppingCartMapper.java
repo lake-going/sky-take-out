@@ -1,6 +1,7 @@
 package com.sky.mapper;
 
 import com.sky.dto.ShoppingCartDTO;
+import com.sky.entity.OrderDetail;
 import com.sky.entity.ShoppingCart;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -19,4 +20,6 @@ public interface ShoppingCartMapper {
     void deleteShoppingCart(Long userId);
 
     void deleteOneShoppingCart(ShoppingCart shoppingCart);
+
+    List<ShoppingCart> queryByUserId(Long currentId);
 }
