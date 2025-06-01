@@ -79,7 +79,7 @@ public class DishServiceImpl implements DishService {
         }
 
         // 清除缓存
-        Set key = redisTemplate.keys("dish_*");
+        Set key = redisTemplate.keys("*dish_*");
         redisTemplate.delete(key);
 
 
@@ -115,7 +115,7 @@ public class DishServiceImpl implements DishService {
         });
 
         // 清除缓存
-        Set key = redisTemplate.keys("dish_*");
+        Set key = redisTemplate.keys("*dish_*");
         redisTemplate.delete(key);
 
     }
@@ -154,7 +154,7 @@ public class DishServiceImpl implements DishService {
         }
 
         // 清除缓存
-        Set key = redisTemplate.keys("dish_*");
+        Set key = redisTemplate.keys("*dish_*");
         redisTemplate.delete(key);
     }
 
