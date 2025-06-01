@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @param
@@ -68,5 +69,11 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             shoppingCartMapper.updateShoppingCart(shoppingCart);
         }
         //
+    }
+
+    @Override
+    public List<ShoppingCart> selectShoppingCart(Long userId) {
+        List<ShoppingCart> shoppingCartList = shoppingCartMapper.selectShoppingCart(userId);
+        return shoppingCartList;
     }
 }

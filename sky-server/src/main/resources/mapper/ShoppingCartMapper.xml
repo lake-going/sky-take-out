@@ -56,5 +56,8 @@
         </if>
     </where>
     </select>
+    <select id="selectShoppingCart" resultType="com.sky.entity.ShoppingCart">
+        select * from shopping_cart where user_id = #{userId}
+    </select>
 
 </mapper>
