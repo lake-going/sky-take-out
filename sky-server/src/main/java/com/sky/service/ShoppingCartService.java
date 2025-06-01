@@ -9,4 +9,8 @@ public interface ShoppingCartService {
     void add(ShoppingCartDTO shoppingCartDTO);
 
     List<ShoppingCart> selectShoppingCart(Long userId);
+
+    void deleteShoppingCart(Long userId);
+
+    void deleteOneShoppingCart(ShoppingCartDTO shoppingCartDTO);
 }

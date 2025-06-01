@@ -43,4 +43,23 @@ public class ShoppingCartController {
 
         return Result.success(shoppingCartList);
     }
+
+    @DeleteMapping("/clean")
+    public Result deleteShoppingCart(){
+        Long userId = BaseContext.getCurrentId();
+        log.info("清除id为{}的购物车",userId);
+
+        shoppingCartService.deleteShoppingCart(userId);
+
+        return Result.success();
+    }
+
+    @PostMapping("/sub")
+    public Result deleteOneShoppingCart(@RequestBody ShoppingCartDTO shoppingCartDTO){
+        log.info("shoppingCartDTO:{}",shoppingCartDTO);
+
+        shoppingCartService.deleteOneShoppingCart(shoppingCartDTO);
+
+        return Result.success();
+    }
 }
