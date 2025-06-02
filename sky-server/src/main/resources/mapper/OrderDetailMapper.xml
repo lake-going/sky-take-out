@@ -3,15 +3,19 @@
 <mapper namespace="com.sky.mapper.OrderDetailMapper">
     <insert id="submitOrderDetail">
         insert into order_detail
-        (name, image, order_id, dish_id,
+        (id,name, image, order_id, dish_id,
          setmeal_id, dish_flavor, number, amount)
-        values (#{name},
-                #{image},
-                #{orderId},
-                #{dishId},
-                #{setmealId},
-                #{dishFlavor},
-                #{number},
-                #{amount})
+        values <foreach collection="orderDetailList" item="orderDetail" separator=",">
+        (null,
+         #{orderDetail.name},
+        #{orderDetail.image},
+        #{orderDetail.orderId},
+        #{orderDetail.dishId},
+        #{orderDetail.setmealId},
+        #{orderDetail.dishFlavor},
+        #{orderDetail.number},
+        #{orderDetail.amount})
+    </foreach>
+
     </insert>
 </mapper>
