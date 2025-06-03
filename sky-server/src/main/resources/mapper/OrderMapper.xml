@@ -26,13 +26,14 @@
                 #{tablewareStatus})
     </insert>
     <select id="getByNumberAndUserId" resultType="com.sky.entity.Orders">
-        select * from orders where orders.user_id = #{userId} and orders.number = #{orderNumber}
+        select * from orders where number = #{orderNumber} and user_id= #{userId}
     </select>
-    <select id="queryOutTimeOrder" resultType="com.sky.entity.Orders">
-        select * from orders o where o.order_time < #{localDateTime} and o.status = #{pendingPayment}
-    </select>
+
     <select id="queryByData" resultType="java.lang.Integer">
         select sum(amount) from orders where status = #{status} and orders.checkout_time between #{begin} and #{end}
+    </select>
+    <select id="queryOutTimeOrder" resultType="com.sky.entity.Orders">
+        select * from orders where #{localDateTime} >order_time and status = #{pendingPayment}
     </select>
 
     <update id="update" parameterType="com.sky.entity.Orders">

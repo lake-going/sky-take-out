@@ -18,7 +18,6 @@ public interface OrderMapper {
      * @param orderNumber
      * @param userId
      */
-    @Select("select * from orders where number = #{orderNumber} and user_id= #{userId}")
     Orders getByNumberAndUserId(String orderNumber, Long userId);
 
     /**
@@ -27,7 +26,6 @@ public interface OrderMapper {
      */
     void update(Orders orders);
 
-    @Select("select * from orders where order_time < #{localDateTime} and status = #{pendingPayment}")
     List<Orders> queryOutTimeOrder(LocalDateTime localDateTime, Integer pendingPayment);
 
     void updateStatus(Orders order);

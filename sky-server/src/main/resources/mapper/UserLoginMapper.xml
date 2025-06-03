@@ -13,4 +13,10 @@
     <select id="queryById" resultType="com.sky.entity.User">
         select * from user where user.id = #{currentId}
     </select>
+    <select id="queryUserByData" resultType="java.lang.Integer">
+        select count(*) from user where create_time between #{begin} and #{end}
+    </select>
+    <select id="queryTotalUserByData" resultType="java.lang.Integer">
+        select count(*) from user where #{end} > create_time
+    </select>
 </mapper>
