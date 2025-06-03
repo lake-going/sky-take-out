@@ -2,12 +2,14 @@ package com.sky.mapper;
 
 import com.sky.entity.OrderDetail;
 import com.sky.entity.Orders;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface OrderMapper {
@@ -35,4 +37,7 @@ public interface OrderMapper {
     Integer queryByData(HashMap<Object, Object> objectObjectHashMap);
 
     Integer queryOrderByData(HashMap<Object, Object> objectObjectHashMap);
+
+    @MapKey("name")
+    List<Map> queryTop10ByData(HashMap<Object, Object> objectObjectHashMap);
 }

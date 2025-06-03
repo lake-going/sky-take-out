@@ -49,6 +49,23 @@
     </where>
     </select>
 
+
+    <select id="queryTop10ByData" resultType="java.util.Map">
+        select od.name,sum(o.number) sumNum from orders o,order_detail od
+                                       where
+                                           o.id = od.order_id
+                                         and
+                                           o.checkout_time &gt; #{begin}
+        and
+                                           o.checkout_time &lt; #{end}
+        and
+                                           o.status = 5
+        group by od.name
+        order by sumNum
+        limit 10
+    </select>
+
+
     <update id="update" parameterType="com.sky.entity.Orders">
         update orders
         <set>

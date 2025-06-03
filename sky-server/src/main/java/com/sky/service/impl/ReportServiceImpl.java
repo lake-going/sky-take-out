@@ -5,6 +5,7 @@ import com.sky.mapper.OrderMapper;
 import com.sky.mapper.UserLoginMapper;
 import com.sky.service.ReportService;
 import com.sky.vo.OrderReportVO;
+import com.sky.vo.SalesTop10ReportVO;
 import com.sky.vo.TurnoverReportVO;
 import com.sky.vo.UserReportVO;
 import org.apache.commons.lang.StringUtils;
@@ -17,6 +18,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @param
@@ -158,6 +160,40 @@ public class ReportServiceImpl implements ReportService {
                 .orderCountList(StringUtils.join(orderCountList, ","))
                 .orderCompletionRate(orderCompletionRate)
                 .dateList(StringUtils.join(localDateList, ","))
+                .build();
+    }
+
+    @Override
+    public SalesTop10ReportVO queryTop10ByData(LocalDate begin, LocalDate end) {
+        // 构造datalish
+        List<LocalDate> localDateList = new ArrayList<LocalDate>();
+        // 循环插入
+        while (begin.isAfter(end)){
+            localDateList.add(begin);
+            begin.plusDays(1);
+        }
+
+        // 循环查询套餐销量
+        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+        objectObjectHashMap.put("begin", LocalDateTime.of(begin, LocalTime.MIN));
+        objectObjectHashMap.put("end",LocalDateTime.of(end,LocalTime.MAX));
+        objectObjectHashMap.put("status",Orders.COMPLETED);
+
+        // 查询前十套餐销量
+        List orderNameList = new ArrayList();
+        List orderNumberList = new ArrayList();
+        List<Map> listTop = orderMapper.queryTop10ByData(objectObjectHashMap);
+        for (Map m:listTop){
+            String name = (String) m.get("name");
+            orderNameList.add(name);
+            String number = (String) m.get("sumNum");
+            orderNumberList.add(number);
+        }
+
+        // 构造vo
+        return SalesTop10ReportVO.builder()
+                .nameList(StringUtils.join(orderNameList, ","))
+                .numberList(StringUtils.join(orderNumberList, ","))
                 .build();
     }
 }
