@@ -51,7 +51,7 @@
 
 
     <select id="queryTop10ByData" resultType="java.util.Map">
-        select od.name,sum(o.number) sumNum from orders o,order_detail od
+        select od.name,sum(o.number) number from orders o,order_detail od
                                        where
                                            o.id = od.order_id
                                          and
@@ -61,8 +61,24 @@
         and
                                            o.status = 5
         group by od.name
-        order by sumNum
+        order by number
         limit 10
+    </select>
+    <select id="countByMap" resultType="java.lang.Integer">
+        select count(id) from orders
+        <where>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+    </select>
+    <select id="sumByMap" resultType="java.lang.Double">
+        select sum(amount) from orders
+        <where>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
     </select>
 
 

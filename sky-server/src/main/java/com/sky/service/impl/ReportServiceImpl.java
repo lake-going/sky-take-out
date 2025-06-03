@@ -1,5 +1,6 @@
 package com.sky.service.impl;
 
+import com.sky.dto.GoodsSalesDTO;
 import com.sky.entity.Orders;
 import com.sky.mapper.OrderMapper;
 import com.sky.mapper.UserLoginMapper;
@@ -182,12 +183,10 @@ public class ReportServiceImpl implements ReportService {
         // 查询前十套餐销量
         List orderNameList = new ArrayList();
         List orderNumberList = new ArrayList();
-        List<Map> listTop = orderMapper.queryTop10ByData(objectObjectHashMap);
-        for (Map m:listTop){
-            String name = (String) m.get("name");
-            orderNameList.add(name);
-            String number = (String) m.get("sumNum");
-            orderNumberList.add(number);
+        List<GoodsSalesDTO> goodsSalesDTOList = orderMapper.queryTop10ByData(objectObjectHashMap);
+        for (GoodsSalesDTO dto : goodsSalesDTOList){
+            orderNameList.add(dto.getName());
+            orderNumberList.add(dto.getNumber());
         }
 
         // 构造vo

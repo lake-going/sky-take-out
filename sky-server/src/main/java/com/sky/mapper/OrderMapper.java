@@ -1,5 +1,6 @@
 package com.sky.mapper;
 
+import com.sky.dto.GoodsSalesDTO;
 import com.sky.entity.OrderDetail;
 import com.sky.entity.Orders;
 import org.apache.ibatis.annotations.MapKey;
@@ -39,5 +40,9 @@ public interface OrderMapper {
     Integer queryOrderByData(HashMap<Object, Object> objectObjectHashMap);
 
     @MapKey("name")
-    List<Map> queryTop10ByData(HashMap<Object, Object> objectObjectHashMap);
+    List<GoodsSalesDTO> queryTop10ByData(HashMap<Object, Object> objectObjectHashMap);
+
+    Integer countByMap(Map map);
+
+    Double sumByMap(Map map);
 }

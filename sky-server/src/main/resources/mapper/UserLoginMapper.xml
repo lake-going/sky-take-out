@@ -19,4 +19,7 @@
     <select id="queryTotalUserByData" resultType="java.lang.Integer">
         select count(*) from user where #{end} > create_time
     </select>
+    <select id="countByMap" resultType="java.lang.Integer">
+        select count(*) from user where create_time between #{begin} and #{end}
+    </select>
 </mapper>
