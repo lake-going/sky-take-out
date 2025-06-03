@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 
 @Mapper
@@ -32,4 +33,6 @@ public interface OrderMapper {
     void updateStatus(Orders order);
 
     void updateDeliveryStatus(Orders order);
+
+    Integer queryByData(HashMap<Object, Object> objectObjectHashMap);
 }

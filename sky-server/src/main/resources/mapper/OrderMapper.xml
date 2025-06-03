@@ -31,6 +31,9 @@
     <select id="queryOutTimeOrder" resultType="com.sky.entity.Orders">
         select * from orders o where o.order_time < #{localDateTime} and o.status = #{pendingPayment}
     </select>
+    <select id="queryByData" resultType="java.lang.Integer">
+        select sum(amount) from orders where status = #{status} and orders.checkout_time between #{begin} and #{end}
+    </select>
 
     <update id="update" parameterType="com.sky.entity.Orders">
         update orders
