@@ -65,5 +65,8 @@
     <update id="updateStatus">
         update orders set orders.status = #{status},orders.cancel_time = #{cancelTime},orders.cancel_reason = #{cancelReason} where id = #{id}
     </update>
+    <update id="updateDeliveryStatus">
+        update orders set orders.delivery_status = #{deliveryStatus},orders.delivery_time = #{deliveryTime} where id = #{id}
+    </update>
 
 </mapper>

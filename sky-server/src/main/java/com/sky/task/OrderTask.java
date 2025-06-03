@@ -24,7 +24,7 @@ public class OrderTask {
     private OrderMapper orderMapper;
 
     @Scheduled(cron = "0 0/1 * * * ?")
-    public Result processOutTimeOrder(){
+    public void processOutTimeOrder(){
         log.info("{}开始执行order扫描", LocalDateTime.now());
 
         // 查，订单生成时间已经超过15分钟且状态为未支付的数据
@@ -40,7 +40,23 @@ public class OrderTask {
                 orderMapper.updateStatus(order);
             });
         }
+    }
 
-        return Result.success();
+    @Scheduled(cron = "0 0 1 * * ?")
+    public void processDeliveryOrder(){
+        log.info("{}开始执行送达状态扫描",LocalDateTime.now());
+
+        // 查询订单,送达状态未完成的
+        LocalDateTime localDateTime = LocalDateTime.now().minusHours(2);
+        List<Orders> ordersList = orderMapper.queryOutTimeOrder(localDateTime,Orders.DELIVERY_IN_PROGRESS);
+
+        // 将数据修改为已送达
+        if (ordersList!= null){
+            ordersList.forEach(order -> {
+                order.setStatus(Orders.COMPLETED);
+                order.setDeliveryTime(LocalDateTime.now());
+                orderMapper.updateDeliveryStatus(order);
+            });
+        }
     }
 }

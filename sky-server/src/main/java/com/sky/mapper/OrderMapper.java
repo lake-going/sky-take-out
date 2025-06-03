@@ -30,4 +30,6 @@ public interface OrderMapper {
     List<Orders> queryOutTimeOrder(LocalDateTime localDateTime, Integer pendingPayment);
 
     void updateStatus(Orders order);
+
+    void updateDeliveryStatus(Orders order);
 }
