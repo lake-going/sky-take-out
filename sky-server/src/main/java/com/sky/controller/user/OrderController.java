@@ -26,7 +26,7 @@ public class OrderController {
 
     @PostMapping("/submit")
     public Result<OrderSubmitVO> submitOrder(@RequestBody OrdersSubmitDTO ordersSubmitDTO){
-        log.info("ordersSubmitDTO:[}",ordersSubmitDTO);
+        log.info("ordersSubmitDTO:{}",ordersSubmitDTO);
 
         OrderSubmitVO orderSubmitVO = orderService.submitOrder(ordersSubmitDTO);
 

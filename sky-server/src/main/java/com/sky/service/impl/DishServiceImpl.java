@@ -81,8 +81,6 @@ public class DishServiceImpl implements DishService {
         // 清除缓存
         Set key = redisTemplate.keys("*dish_*");
         redisTemplate.delete(key);
-
-
     }
 
     @Transactional

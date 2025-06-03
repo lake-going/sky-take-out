@@ -26,7 +26,10 @@
                 #{tablewareStatus})
     </insert>
     <select id="getByNumberAndUserId" resultType="com.sky.entity.Orders">
-        select * from orders where orders.user_id = #{iserId} and orders.
+        select * from orders where orders.user_id = #{userId} and orders.number = #{orderNumber}
+    </select>
+    <select id="queryOutTimeOrder" resultType="com.sky.entity.Orders">
+        select * from orders o where o.order_time < #{localDateTime} and o.status = #{pendingPayment}
     </select>
 
     <update id="update" parameterType="com.sky.entity.Orders">
@@ -59,4 +62,8 @@
         </set>
         where id = #{id}
     </update>
+    <update id="updateStatus">
+        update orders set orders.status = #{status},orders.cancel_time = #{cancelTime},orders.cancel_reason = #{cancelReason} where id = #{id}
+    </update>
+
 </mapper>
