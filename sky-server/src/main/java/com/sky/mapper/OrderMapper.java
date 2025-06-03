@@ -33,4 +33,6 @@ public interface OrderMapper {
     void updateDeliveryStatus(Orders order);
 
     Integer queryByData(HashMap<Object, Object> objectObjectHashMap);
+
+    Integer queryOrderByData(HashMap<Object, Object> objectObjectHashMap);
 }

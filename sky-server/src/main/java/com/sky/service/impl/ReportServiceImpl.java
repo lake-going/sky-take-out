@@ -1,17 +1,13 @@
 package com.sky.service.impl;
 
-import com.sky.constant.StatusConstant;
-import com.sky.context.BaseContext;
 import com.sky.entity.Orders;
-import com.sky.entity.User;
 import com.sky.mapper.OrderMapper;
 import com.sky.mapper.UserLoginMapper;
 import com.sky.service.ReportService;
-import com.sky.service.UserService;
+import com.sky.vo.OrderReportVO;
 import com.sky.vo.TurnoverReportVO;
 import com.sky.vo.UserReportVO;
 import org.apache.commons.lang.StringUtils;
-import org.apache.poi.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -102,5 +98,66 @@ public class ReportServiceImpl implements ReportService {
                 .build();
 
         return userReportVO;
+    }
+
+    @Override
+    public OrderReportVO queryOrderByData(LocalDate begin, LocalDate end) {
+        // 构造datalish
+        List<LocalDate> localDateList = new ArrayList<LocalDate>();
+        // 循环插入
+        while (begin.isAfter(end)) {
+            localDateList.add(begin);
+            begin.plusDays(1);
+        }
+
+        // 循环查询订单数
+        Integer totalOrderCount = 0;
+        Integer validOrderCount = 0;
+        List<Integer> orderCountList = new ArrayList<Integer>();
+        List<Integer> validOrderCountList = new ArrayList<Integer>();
+        localDateList.forEach(localDate -> {
+            HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+            objectObjectHashMap.put("begin", LocalDateTime.of(localDate, LocalTime.MIN));
+            objectObjectHashMap.put("end", LocalDateTime.of(localDate, LocalTime.MAX));
+            objectObjectHashMap.put("status", Orders.COMPLETED);
+
+            // 查询有效订单
+            Integer userValidNumber = orderMapper.queryOrderByData(objectObjectHashMap);
+            validOrderCountList.add(userValidNumber);
+
+            // 查询所有订单
+            objectObjectHashMap.put("status", null);
+            Integer userTotalNumber = orderMapper.queryOrderByData(objectObjectHashMap);
+            orderCountList.add(userTotalNumber);
+        });
+
+        // 查询整个时间段内的所有订单
+        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+        objectObjectHashMap.put("begin", LocalDateTime.of(begin, LocalTime.MIN));
+        objectObjectHashMap.put("end", LocalDateTime.of(end, LocalTime.MAX));
+        Integer totalOrderCount1 = orderMapper.queryOrderByData(objectObjectHashMap);
+
+
+        // 查询整个时间段内的所有有效订单
+        objectObjectHashMap.put("status", Orders.COMPLETED);
+        Integer validOrderCount1 = orderMapper.queryOrderByData(objectObjectHashMap);
+
+
+        // 计算有效订单的比例
+        Double orderCompletionRate = null;
+        if (totalOrderCount1 != 0) {
+            orderCompletionRate = (double) (validOrderCount1 / totalOrderCount1) * 100;
+        }
+
+
+        // 构造vo
+        return OrderReportVO.builder()
+                .validOrderCount(validOrderCount1)
+                .totalOrderCount(totalOrderCount1)
+                .validOrderCountList(StringUtils.join(validOrderCountList, ","))
+                .orderCountList(StringUtils.join(orderCountList, ","))
+                .orderCompletionRate(orderCompletionRate)
+                .dateList(StringUtils.join(localDateList, ","))
+                .build();
     }
 }
